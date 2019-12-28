@@ -12,7 +12,8 @@ import java.util.Queue;
 3 - Noise point
  */
 public class DBSCAN{
-    public ArrayList<ArrayList<Fruits>> dbscan(ArrayList<Fruits> fruits,double eps,int minpts,HashMap <String,Integer> Enum)
+    public HashMap <String,Integer> Enum ;
+    public ArrayList<ArrayList<Fruits>> dbscan(ArrayList<Fruits> fruits,double eps,int minpts)
     {
         ArrayList<ArrayList<Fruits>> clusterlist = new ArrayList<ArrayList<Fruits>>() ;
         for(int i = 0 ; i  < fruits.size() ; i++)
@@ -21,7 +22,7 @@ public class DBSCAN{
             {
                 if(iscore(fruits,fruits.get(i), eps,Enum).size()>= minpts)
                 {
-                    ArrayList<Fruits> x = dbscan_helper(fruits,fruits.get(i),eps,minpts,Enum) ;
+                    ArrayList<Fruits> x = dbscan_helper(fruits,fruits.get(i),eps,minpts) ;
                     clusterlist.add(x) ;
                 }
                 else
@@ -34,7 +35,7 @@ public class DBSCAN{
         }
         return clusterlist ;
     }
-    public ArrayList<Fruits> dbscan_helper(ArrayList<Fruits> fruits,Fruits f , double eps, int minpts , HashMap <String,Integer> Enum)
+    public ArrayList<Fruits> dbscan_helper(ArrayList<Fruits> fruits,Fruits f , double eps, int minpts)
     {
         Queue<Fruits> q = new LinkedList<>();
         ArrayList<Fruits> k = new ArrayList<>() ;
