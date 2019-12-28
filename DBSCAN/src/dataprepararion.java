@@ -91,7 +91,8 @@ public class dataprepararion
         }
         //clone.addAll(fruits) ;
         DBSCAN a = new DBSCAN()  ;
-        ArrayList<ArrayList<Fruits>> n = a.dbscan(fruits,.7,3,Enum) ;
+        a.Enum = Enum ;
+        ArrayList<ArrayList<Fruits>> n = a.dbscan(fruits,.7,3) ;
         int counter1 = 0 ;
         for(int i = 0; i< n.size();i++)
         {
@@ -112,6 +113,8 @@ public class dataprepararion
         }
     }
 }
+
+
 
 
 
