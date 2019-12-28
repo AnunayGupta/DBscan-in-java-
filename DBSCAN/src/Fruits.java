@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Fruits {
     public int fruit_label;
@@ -33,4 +35,32 @@ public class Fruits {
             return f.distance.compareTo(g.distance);
         }
     };*/
+
+    public ArrayList<Double> getfeature(HashMap<String,Integer> Enum){
+        ArrayList<Double> q  = new ArrayList<>() ;
+        q.add(mass) ;
+        q.add(width) ;
+        q.add(height) ;
+        q.add(color_score) ;
+        int k  = Enum.get(sub1)-1 ;
+        for(int i = 0 ; i < Enum.size() ; i++){
+            if(i == k){
+                q.add(1.0);
+            }
+            else{
+                q.add(0.0) ;
+            }
+        }
+        return q ;
+    }
+    public double distance(Fruits f,HashMap <String,Integer> Enum)
+    {
+        ArrayList<Double> f1 = this.getfeature(Enum) ;
+        ArrayList<Double> f2 = f.getfeature(Enum) ;
+        double sum = 0 ;
+        for(int i = 0 ; i < f1.size();i++){
+            sum += Math.pow((f1.get(i) - f2.get(i)),2) ;
+        }
+        return Math.pow(sum,.5);
+    }
 }
