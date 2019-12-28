@@ -2,7 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class dataprepararion {
+public class dataprepararion
+{
     public static void main(String[] args)
     {
         HashMap<Integer, String> hm = new HashMap<Integer, String>();
@@ -23,33 +24,36 @@ public class dataprepararion {
                 if (counter == 0) {
                     counter++;
                     continue;
-                } else {
-                    if (values.get(2).equals("unknown")) {
-                        values.set(2, "spanish_belsan");
-                    }
-                    Fruits s = new Fruits();
-                    // Can be avoided by using a constructor
-                    s.fruit_label = Integer.valueOf(values.get(0));
-                    s.fruit_name = values.get(1);
-                    if (!hm.containsKey(values.get(1))) {
-                        hm.put(s.fruit_label, values.get(1));
-                    }
-                    s.mass = Double.valueOf(values.get(3));
-                    m.add(s.mass);
-                    s.width = Double.valueOf(values.get(4));
-                    w.add(s.width);
-                    s.height = Double.valueOf(values.get(5));
-                    h.add(s.height);
-                    s.color_score = Double.valueOf(values.get(6));
-                    c.add(s.color_score);
-                    s.sub1 = values.get(2);
-                    if (!Enum.containsKey(s.sub1)) {
-                        Enum.put(s.sub1, countdiff);
-                        countdiff++;
-                    }
-                    s.no = counter -1 ;
-                    counter++ ;
-                    fruits.add(s);
+                }
+                else
+                    {
+                        if (values.get(2).equals("unknown"))
+                        {
+                            values.set(2, "spanish_belsan");
+                        }
+                        Fruits s = new Fruits();
+                        // Can be avoided by using a constructor
+                        s.fruit_label = Integer.valueOf(values.get(0));
+                        s.fruit_name = values.get(1);
+                        if (!hm.containsKey(values.get(1))) {
+                            hm.put(s.fruit_label, values.get(1));
+                        }
+                        s.mass = Double.valueOf(values.get(3));
+                        m.add(s.mass);
+                        s.width = Double.valueOf(values.get(4));
+                        w.add(s.width);
+                        s.height = Double.valueOf(values.get(5));
+                        h.add(s.height);
+                        s.color_score = Double.valueOf(values.get(6));
+                        c.add(s.color_score);
+                        s.sub1 = values.get(2);
+                        if (!Enum.containsKey(s.sub1)) {
+                            Enum.put(s.sub1, countdiff);
+                            countdiff++;
+                        }
+                        s.no = counter -1 ;
+                        counter++ ;
+                        fruits.add(s);
                 }
             }
         } catch (Exception e) {
@@ -72,11 +76,11 @@ public class dataprepararion {
         x.color_score = 0.0 ;
         x.no = counter - 1 ;
         x.sub1 = "New" ;
-
         Enum.put(x.sub1,countdiff) ;
         fruits.add(x) ;
-        Collections.shuffle(fruits, new Random(0));
-        for (int i = 0; i < fruits.size(); i++) {
+        //Collections.shuffle(fruits, new Random(0));
+        for (int i = 0; i < fruits.size(); i++)
+        {
             Fruits f = fruits.get(i);
             //f.labeled = Enum.get(f.sub1) ;
             f.mass = (f.mass - minm) / (maxm - minm);
@@ -85,10 +89,10 @@ public class dataprepararion {
             f.color_score = (f.color_score - minc) / (maxc - minc);
             fruits.set(i, f);
         }
-        clone.addAll(fruits) ;
+        //clone.addAll(fruits) ;
         DBSCAN a = new DBSCAN()  ;
-        ArrayList<ArrayList<Fruits>> n = a.dbscan(fruits,clone,.7,3,Enum) ;
-        /*int counter1 = 0 ;
+        ArrayList<ArrayList<Fruits>> n = a.dbscan(fruits,.7,3,Enum) ;
+        int counter1 = 0 ;
         for(int i = 0; i< n.size();i++)
         {
             for(int j = 0 ; j < n.get(i).size(); j++)
@@ -98,16 +102,16 @@ public class dataprepararion {
                 counter1++ ;
             }
             System.out.println("\n");
-        }*/
-        for(Fruits g :clone)
+        }
+        for(Fruits g :fruits)
         {
             if(g.stat == 3)
             {
                 g.display();
             }
         }
-
     }
-
 }
+
+
 
