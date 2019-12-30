@@ -36,14 +36,14 @@ public class Fruits {
         }
     };*/
 
-    public ArrayList<Double> getfeature(HashMap<String,Integer> Enum){
+    public ArrayList<Double> getfeature(){
         ArrayList<Double> q  = new ArrayList<>() ;
         q.add(mass) ;
         q.add(width) ;
         q.add(height) ;
         q.add(color_score) ;
-        int k  = Enum.get(sub1)-1 ;
-        for(int i = 0 ; i < Enum.size() ; i++){
+        int k  = staticmaps.x.get(sub1)-1 ;
+        for(int i = 0 ; i < staticmaps.x.size() ; i++){
             if(i == k){
                 q.add(1.0);
             }
@@ -53,10 +53,10 @@ public class Fruits {
         }
         return q ;
     }
-    public double distance(Fruits f,HashMap <String,Integer> Enum)
+    public double distance(Fruits f)
     {
-        ArrayList<Double> f1 = this.getfeature(Enum) ;
-        ArrayList<Double> f2 = f.getfeature(Enum) ;
+        ArrayList<Double> f1 = this.getfeature() ;
+        ArrayList<Double> f2 = f.getfeature() ;
         double sum = 0 ;
         for(int i = 0 ; i < f1.size();i++){
             sum += Math.pow((f1.get(i) - f2.get(i)),2) ;
