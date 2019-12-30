@@ -12,7 +12,6 @@ import java.util.Queue;
 3 - Noise point
  */
 public class DBSCAN{
-    public HashMap <String,Integer> Enum ;
     public ArrayList<ArrayList<Fruits>> dbscan(ArrayList<Fruits> fruits,double eps,int minpts)
     {
         ArrayList<ArrayList<Fruits>> clusterlist = new ArrayList<ArrayList<Fruits>>() ;
@@ -20,7 +19,7 @@ public class DBSCAN{
         {
             if(!fruits.get(i).visited)
             {
-                if(iscore(fruits,fruits.get(i), eps,Enum).size()>= minpts)
+                if(iscore(fruits,fruits.get(i), eps).size()>= minpts)
                 {
                     ArrayList<Fruits> x = dbscan_helper(fruits,fruits.get(i),eps,minpts) ;
                     clusterlist.add(x) ;
@@ -44,7 +43,7 @@ public class DBSCAN{
         {
             Fruits r  = q.peek() ;
             q.remove() ;
-            ArrayList<Fruits> neighborhood = iscore(fruits,r,eps,Enum) ;
+            ArrayList<Fruits> neighborhood = iscore(fruits,r,eps) ;
             if(neighborhood.size() >= minpts)
             {
                 r.stat = 1 ;
@@ -70,12 +69,12 @@ public class DBSCAN{
         }
         return k ;
     }
-    public ArrayList<Fruits> iscore(ArrayList<Fruits> fruits,Fruits f,double eps,HashMap<String,Integer> Enum)
+    public ArrayList<Fruits> iscore(ArrayList<Fruits> fruits,Fruits f,double eps)
     {
         ArrayList<Fruits> f1 = new ArrayList<>() ;
         for(int i = 0 ; i < fruits.size();i++)
         {
-            if(f.distance(fruits.get(i),Enum) <= eps)
+            if(f.distance(fruits.get(i)) <= eps)
             {
                 f1.add(fruits.get(i)) ;
             }
